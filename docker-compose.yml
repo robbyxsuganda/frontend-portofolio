@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://backend:5000/api
+      - NEXT_PUBLIC_SITE_URL=https://robbysuganda.com
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - portfolio-network
+
+  # Uncomment when backend is ready
+  # backend:
+  #   build:
+  #     context: ../backend-portfolio
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "5000:5000"
+  #   environment:
+  #     - NODE_ENV=production
+  #     - DATABASE_URL=your_database_url
+  #   volumes:
+  #     - uploads:/app/uploads
+  #   restart: unless-stopped
+  #   networks:
+  #     - portfolio-network
+
+networks:
+  portfolio-network:
+    driver: bridge
+
+# volumes:
+#   uploads:
