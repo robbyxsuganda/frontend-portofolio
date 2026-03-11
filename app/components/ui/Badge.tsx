@@ -13,7 +13,7 @@ export default function Badge({
     default:
       "bg-[var(--surface)] text-[var(--foreground-secondary)] border border-[var(--border)]",
     success:
-      "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+      "bg-[var(--surface)] text-[var(--foreground)] border border-[var(--border)]",
     accent:
       "bg-[var(--accent)]/10 text-[var(--accent)] border border-[var(--accent)]/20",
   };

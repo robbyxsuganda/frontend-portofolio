@@ -71,7 +71,7 @@ export default function ResumeSection() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-700 text-gray-200 text-sm font-medium"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--surface)] text-[var(--foreground-secondary)] text-sm font-medium border border-[var(--border)]"
                     >
                       {exp.period}
                     </motion.div>
@@ -85,19 +85,20 @@ export default function ResumeSection() {
                   >
                     {/* Mobile Period Badge */}
                     <div className="md:hidden mb-3">
-                      <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-700 text-gray-200 text-sm font-medium">
+                      <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface)] text-[var(--foreground-secondary)] text-sm font-medium border border-[var(--border)]">
                         {exp.period}
                       </span>
                     </div>
 
                     {/* Card */}
-                    <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-xl p-6 hover:border-gray-500 transition-colors duration-300">
+                    <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-xl p-6 hover:border-[var(--accent)] transition-colors duration-300">
                       <h3 className="text-lg font-bold text-[var(--foreground)] mb-1 font-[family-name:var(--font-sora)]">
                         {exp.position}
                       </h3>
 
                       <div
-                        className={`flex items-center gap-2 text-gray-600 dark:text-gray-400 mb-2 ${
+                        className={`flex items-center gap-2 text-[var(--foreground-secondary)] mb-2 ${
+
                           index % 2 === 0 ? "" : "md:justify-end"
                         }`}
                       >
@@ -122,7 +123,7 @@ export default function ResumeSection() {
                               index % 2 === 0 ? "" : "md:flex-row-reverse"
                             }`}
                           >
-                            <span className="text-gray-500 mt-1.5">•</span>
+                             <span className="text-[var(--foreground-tertiary)] mt-1.5">•</span>
                             <span>{desc}</span>
                           </li>
                         ))}

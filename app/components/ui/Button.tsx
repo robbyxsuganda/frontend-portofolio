@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
@@ -43,17 +44,29 @@ export default function Button({
   const combinedClassName = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`;
 
   if (href) {
+    const isExternal = href.startsWith("http") || href.startsWith("//");
+
+    if (isExternal) {
+      return (
+        <motion.a
+          href={href}
+          className={combinedClassName}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: disabled ? 1 : 0.98 }}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
+        </motion.a>
+      );
+    }
+
     return (
-      <motion.a
-        href={href}
-        className={combinedClassName}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: disabled ? 1 : 0.98 }}
-        target={href.startsWith("http") ? "_blank" : undefined}
-        rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-      >
-        {children}
-      </motion.a>
+      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: disabled ? 1 : 0.98 }}>
+        <Link href={href} className={combinedClassName}>
+          {children}
+        </Link>
+      </motion.div>
     );
   }
 

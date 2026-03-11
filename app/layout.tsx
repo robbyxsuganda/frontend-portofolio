@@ -6,7 +6,8 @@ import { LanguageProvider } from "@/app/context/LanguageContext";
 import QueryProvider from "@/app/lib/providers/QueryProvider";
 import Navbar from "@/app/components/layouts/Navbar";
 import Footer from "@/app/components/layouts/Footer";
-import ENVIRONMENT from "./config/environtment";
+import ENVIRONMENT from "./config/environment";
+
 
 
 const inter = Inter({

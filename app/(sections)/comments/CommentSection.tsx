@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { HiUser, HiPhotograph, HiX } from "react-icons/hi";
 import SectionTitle from "@/app/components/ui/SectionTitle";
@@ -181,7 +182,7 @@ export default function CommentSection() {
                   ) : (
                     <div className="flex items-center gap-4">
                       <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-gray-500">
-                        <img src={photoPreview} alt="Preview" className="w-full h-full object-cover" />
+                        <Image src={photoPreview} fill alt="Preview" className="object-cover" unoptimized />
                       </div>
                       <div className="flex-grow">
                         <p className="text-sm text-[var(--foreground)] truncate">
@@ -239,9 +240,9 @@ export default function CommentSection() {
                 className="flex gap-4 p-4 bg-[var(--card-bg)] border border-[var(--border)] rounded-xl"
               >
                 {/* Avatar */}
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center overflow-hidden">
+                <div className="relative flex-shrink-0 w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center overflow-hidden">
                   {comment.photo ? (
-                    <img src={comment.photo} alt={comment.name} className="w-full h-full object-cover" />
+                    <Image src={comment.photo} alt={comment.name} fill className="object-cover" unoptimized />
                   ) : (
                     <HiUser className="w-6 h-6 text-gray-300" />
                   )}

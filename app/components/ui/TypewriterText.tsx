@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 
 interface TypewriterTextProps {
   texts: string[];
@@ -51,11 +50,8 @@ export default function TypewriterText({
   return (
     <span className={className}>
       {displayText}
-      <motion.span
-        className="typewriter-cursor inline-block w-0.5 h-[1em] bg-[var(--accent)] ml-1 align-middle"
-        animate={{ opacity: [1, 0] }}
-        transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
-      />
+      {/* Single cursor animation — CSS-only via globals.css */}
+      <span className="typewriter-cursor inline-block w-0.5 h-[1em] bg-[var(--accent)] ml-1 align-middle" />
     </span>
   );
 }

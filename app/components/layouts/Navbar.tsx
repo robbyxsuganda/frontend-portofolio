@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiMenu, HiX, HiSun, HiMoon, HiGlobeAlt } from "react-icons/hi";
 import { useTheme } from "@/app/context/ThemeContext";
@@ -12,7 +12,8 @@ export default function Navbar() {
   const [langOpen, setLangOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const { theme, toggleTheme } = useTheme();
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
+  const langDropdownRef = useRef<HTMLDivElement>(null);
 
   // Track active section with Intersection Observer (more performant than scroll event)
   useEffect(() => {
@@ -27,13 +28,26 @@ export default function Navbar() {
       { rootMargin: "-50% 0px -50% 0px" }
     );
 
-    // Observe all sections
     MENU.forEach((item) => {
       const section = document.getElementById(item.key);
       if (section) observer.observe(section);
     });
 
     return () => observer.disconnect();
+  }, []);
+
+  // Close language dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        langDropdownRef.current &&
+        !langDropdownRef.current.contains(event.target as Node)
+      ) {
+        setLangOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleNavClick = (href: string, key: string) => {
@@ -62,9 +76,9 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-1">
-            {MENU.map((item, index) => (
+            {MENU.map((item) => (
               <button
-                key={item.key+index}
+                key={item.key}
                 onClick={() => handleNavClick(item.href, item.key)}
                 className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300 cursor-pointer ${
                   activeSection === item.key
@@ -72,7 +86,7 @@ export default function Navbar() {
                     : "text-[var(--foreground-secondary)] hover:text-[var(--foreground)] hover:bg-[var(--surface)]"
                 }`}
               >
-                {item.label}
+                {t(item.translationKey)}
                 {activeSection === item.key && (
                   <motion.div
                     layoutId="activeNav"
@@ -87,10 +101,12 @@ export default function Navbar() {
           {/* Actions */}
           <div className="flex items-center gap-2">
             {/* Language Switcher */}
-            <div className="relative">
+            <div className="relative" ref={langDropdownRef}>
               <button
                 onClick={() => setLangOpen(!langOpen)}
                 className="p-2 rounded-lg text-[var(--foreground-secondary)] hover:text-[var(--foreground)] hover:bg-[var(--surface)] transition-all duration-300 cursor-pointer flex items-center gap-1"
+                aria-label="Switch language"
+                aria-expanded={langOpen}
               >
                 <HiGlobeAlt className="w-5 h-5" />
                 <span className="text-xs font-medium uppercase">{language}</span>
@@ -103,32 +119,22 @@ export default function Navbar() {
                     exit={{ opacity: 0, y: -10 }}
                     className="absolute right-0 mt-2 w-24 bg-[var(--card-bg)] border border-[var(--border)] rounded-lg shadow-lg overflow-hidden"
                   >
-                    <button
-                      onClick={() => {
-                        setLanguage("en");
-                        setLangOpen(false);
-                      }}
-                      className={`w-full px-4 py-2 text-sm text-left hover:bg-[var(--surface)] transition-colors cursor-pointer ${
-                        language === "en"
-                          ? "text-[var(--foreground)] font-medium"
-                          : "text-[var(--foreground-secondary)]"
-                      }`}
-                    >
-                      English
-                    </button>
-                    <button
-                      onClick={() => {
-                        setLanguage("id");
-                        setLangOpen(false);
-                      }}
-                      className={`w-full px-4 py-2 text-sm text-left hover:bg-[var(--surface)] transition-colors cursor-pointer ${
-                        language === "id"
-                          ? "text-[var(--foreground)] font-medium"
-                          : "text-[var(--foreground-secondary)]"
-                      }`}
-                    >
-                      Indonesia
-                    </button>
+                    {(["en", "id"] as const).map((lang) => (
+                      <button
+                        key={lang}
+                        onClick={() => {
+                          setLanguage(lang);
+                          setLangOpen(false);
+                        }}
+                        className={`w-full px-4 py-2 text-sm text-left hover:bg-[var(--surface)] transition-colors cursor-pointer ${
+                          language === lang
+                            ? "text-[var(--foreground)] font-medium"
+                            : "text-[var(--foreground-secondary)]"
+                        }`}
+                      >
+                        {lang === "en" ? "English" : "Indonesia"}
+                      </button>
+                    ))}
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -152,6 +158,7 @@ export default function Navbar() {
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden p-2 rounded-lg text-[var(--foreground-secondary)] hover:text-[var(--foreground)] hover:bg-[var(--surface)] transition-all duration-300 cursor-pointer"
               aria-label="Toggle menu"
+              aria-expanded={isOpen}
             >
               {isOpen ? (
                 <HiX className="w-6 h-6" />
@@ -183,7 +190,7 @@ export default function Navbar() {
                     }`}
                   >
                     <item.icon className="w-5 h-5" />
-                    <span className="font-medium">{item.label}</span>
+                    <span className="font-medium">{t(item.translationKey)}</span>
                     {activeSection === item.key && (
                       <div className="ml-auto w-2 h-2 bg-[var(--foreground)] rounded-full" />
                     )}

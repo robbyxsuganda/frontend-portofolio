@@ -57,7 +57,7 @@ export default function AboutSection() {
                   {profile?.summary}
                 </p>
                 <p className="text-[var(--foreground-secondary)] leading-relaxed mb-8">
-                  Quick to adapt, collaborative in team environments, and always eager to contribute to innovative and impactful projects.
+                  {t("about.secondary")}
                 </p>
 
                 {/* Quote */}
@@ -72,7 +72,7 @@ export default function AboutSection() {
                     <FaQuoteLeft className="w-5 h-5 text-white" />
                   </div>
                   <p className="text-lg font-medium text-[var(--foreground)] italic font-[family-name:var(--font-sora)] mt-2 ml-4">
-                    &quot;Never give up&quot;
+                    &quot;{t("about.quote")}&quot;
                   </p>
                 </motion.div>
               </>

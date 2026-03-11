@@ -1,11 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-interface FilterTab {
-  key: string;
-  label: string;
-}
+import type { FilterTab } from "@/app/lib/types";
 
 interface FilterTabsProps {
   tabs: FilterTab[];

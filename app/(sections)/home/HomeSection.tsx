@@ -9,14 +9,22 @@ import TypewriterText from "@/app/components/ui/TypewriterText";
 import Skeleton from "@/app/components/ui/Skeleton";
 import ErrorMessage from "@/app/components/ui/ErrorMessage";
 import { useLanguage } from "@/app/context/LanguageContext";
-import { useProfile, useSocialMedia } from "./hooks";
+import { useProfile, useSocialMedia, useStats } from "./hooks";
+
 
 export default function HomeSection() {
   const { t } = useLanguage();
   const { data: profile, isLoading: profileLoading, error: profileError } = useProfile();
   const { data: socialMedia, isLoading: socialLoading } = useSocialMedia();
+  const { data: stats } = useStats();
+
+  // Use first two stats for the floating elements (years, projects)
+  const yearsStatValue = stats?.find((s) => s.label.toLowerCase().includes("year"))?.value ?? "3+";
+  const projectsStatValue = stats?.find((s) => s.label.toLowerCase().includes("project"))?.value ?? "5+";
+  const projectsStatLabel = stats?.find((s) => s.label.toLowerCase().includes("project"))?.label ?? "Projects";
 
   const isLoading = profileLoading || socialLoading;
+
 
   if (profileError) {
     return (
@@ -159,14 +167,15 @@ export default function HomeSection() {
               </div>
 
               {/* Floating Element - Years */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-[var(--accent)] rounded-2xl flex items-center justify-center text-white font-bold shadow-lg">
-                3+ yrs
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-[var(--accent)] rounded-2xl flex flex-col items-center justify-center text-white font-bold shadow-lg">
+                <span className="text-lg font-bold">{yearsStatValue}</span>
+                <span className="text-[0.55rem] font-medium text-white/80 text-center px-1">yrs exp</span>
               </div>
 
               {/* Floating Element - Projects */}
               <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl flex flex-col items-center justify-center shadow-lg">
-                <span className="text-2xl font-bold text-[var(--accent)]">5+</span>
-                <span className="text-xs text-[var(--foreground-secondary)]">Projects</span>
+                <span className="text-2xl font-bold text-[var(--accent)]">{projectsStatValue}</span>
+                <span className="text-xs text-[var(--foreground-secondary)] text-center px-1">{projectsStatLabel}</span>
               </div>
             </div>
           </motion.div>

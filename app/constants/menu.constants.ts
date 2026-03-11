@@ -13,64 +13,19 @@ import {
 
 export interface Menu {
   key: string;
-  label: string;
+  translationKey: string;
   href: string;
   icon: IconType;
 }
 
 export const MENU: Menu[] = [
-  {
-    key: "home",
-    label: "Home",
-    href: "#home",
-    icon: HiHome,
-  },
-  {
-    key: "about",
-    label: "About",
-    href: "#about",
-    icon: HiUser,
-  },
-  {
-    key: "skills",
-    label: "Skills",
-    href: "#skills",
-    icon: HiLightningBolt,
-  },
-  {
-    key: "services",
-    label: "Services",
-    href: "#services",
-    icon: HiBriefcase,
-  },
-  {
-    key: "resume",
-    label: "Resume",
-    href: "#resume",
-    icon: HiDocumentText,
-  },
-  {
-    key: "projects",
-    label: "Projects",
-    href: "#projects",
-    icon: HiCollection,
-  },
-  {
-    key: "certificates",
-    label: "Certificates",
-    href: "#certificates",
-    icon: HiAcademicCap,
-  },
-  {
-    key: "other",
-    label: "Other",
-    href: "#other",
-    icon: HiStar,
-  },
-  {
-    key: "contact",
-    label: "Contact",
-    href: "#contact",
-    icon: HiMail,
-  },
+  { key: "home",         translationKey: "nav.home",         href: "#home",         icon: HiHome },
+  { key: "about",        translationKey: "nav.about",        href: "#about",        icon: HiUser },
+  { key: "skills",       translationKey: "nav.skills",       href: "#skills",       icon: HiLightningBolt },
+  { key: "services",     translationKey: "nav.services",     href: "#services",     icon: HiBriefcase },
+  { key: "resume",       translationKey: "nav.resume",       href: "#resume",       icon: HiDocumentText },
+  { key: "projects",     translationKey: "nav.projects",     href: "#projects",     icon: HiCollection },
+  { key: "certificates", translationKey: "nav.certificates", href: "#certificates", icon: HiAcademicCap },
+  { key: "other",        translationKey: "nav.other",        href: "#other",        icon: HiStar },
+  { key: "contact",      translationKey: "nav.contact",      href: "#contact",      icon: HiMail },
 ];

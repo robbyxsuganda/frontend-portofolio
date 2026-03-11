@@ -55,24 +55,6 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--surface);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--foreground-secondary);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
-}
-
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-sora), sans-serif;
@@ -100,12 +82,7 @@ section {
   }
 }
 
-/* Container */
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  width: 100%;
-}
+
 
 /* Typewriter Cursor Animation */
 @keyframes blink {
