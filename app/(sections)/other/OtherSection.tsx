@@ -14,10 +14,12 @@ import FilterTabs from "@/app/components/ui/FilterTabs";
 import Modal from "@/app/components/ui/Modal";
 import Skeleton from "@/app/components/ui/Skeleton";
 import ErrorMessage from "@/app/components/ui/ErrorMessage";
+import { useLanguage } from "@/app/context/LanguageContext";
 import { useOther, useOtherCategories } from "./hooks";
 import type { OtherItem, OtherCategory } from "./types";
 
 export default function OtherSection() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<OtherCategory>("all");
   const [selectedItem, setSelectedItem] = useState<OtherItem | null>(null);
   const { data: categories, isLoading: categoriesLoading } = useOtherCategories();
@@ -28,7 +30,7 @@ export default function OtherSection() {
   return (
     <section id="other" className="bg-[var(--surface)]">
       <div className="container mx-auto px-4 md:px-6">
-        <SectionTitle title="Other Activities" />
+        <SectionTitle title={t("other.title")} />
 
         {categoriesLoading ? (
           <div className="flex gap-2 mb-8">

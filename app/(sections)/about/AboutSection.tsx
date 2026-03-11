@@ -8,7 +8,7 @@ import Card from "@/app/components/ui/Card";
 import Skeleton, { CardSkeleton } from "@/app/components/ui/Skeleton";
 import ErrorMessage from "@/app/components/ui/ErrorMessage";
 import { useLanguage } from "@/app/context/LanguageContext";
-import { useProfile, useEducation, useStats } from "./hooks";
+import { useProfile, useEducation, useStats } from "@/app/(sections)/home/hooks";
 
 export default function AboutSection() {
   const { t } = useLanguage();

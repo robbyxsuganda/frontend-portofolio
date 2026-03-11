@@ -158,10 +158,10 @@ export default function CommentSection() {
                       onDragLeave={handleDragLeave}
                       onClick={() => fileInputRef.current?.click()}
                       className={`relative flex items-center justify-center gap-3 px-4 py-3 bg-[var(--surface)] border-2 border-dashed rounded-lg cursor-pointer transition-all duration-300 ${
-                        isDragging
-                          ? "border-gray-500 bg-gray-500/10"
-                          : "border-[var(--border)] hover:border-gray-500"
-                      }`}
+                         isDragging
+                           ? "border-[var(--accent)] bg-[var(--accent)]/10"
+                           : "border-[var(--border)] hover:border-[var(--accent)]"
+                       }`}
                     >
                       <HiPhotograph className="w-6 h-6 text-[var(--foreground-secondary)]" />
                       <div className="text-sm">
@@ -181,7 +181,7 @@ export default function CommentSection() {
                     </div>
                   ) : (
                     <div className="flex items-center gap-4">
-                      <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-gray-500">
+                      <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[var(--accent)]">
                         <Image src={photoPreview} fill alt="Preview" className="object-cover" unoptimized />
                       </div>
                       <div className="flex-grow">
@@ -240,11 +240,11 @@ export default function CommentSection() {
                 className="flex gap-4 p-4 bg-[var(--card-bg)] border border-[var(--border)] rounded-xl"
               >
                 {/* Avatar */}
-                <div className="relative flex-shrink-0 w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center overflow-hidden">
+                <div className="relative flex-shrink-0 w-12 h-12 rounded-full bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center overflow-hidden">
                   {comment.photo ? (
                     <Image src={comment.photo} alt={comment.name} fill className="object-cover" unoptimized />
                   ) : (
-                    <HiUser className="w-6 h-6 text-gray-300" />
+                    <HiUser className="w-6 h-6 text-[var(--foreground-secondary)]" />
                   )}
                 </div>
                 

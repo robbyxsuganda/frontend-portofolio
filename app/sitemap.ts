@@ -1,9 +1,7 @@
 import { MetadataRoute } from "next";
-import ENVIRONMENT from "./config/environtment";
+import ENVIRONMENT from "./config/environment";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  
-
   return [
     {
       url: ENVIRONMENT.SITE_URL,

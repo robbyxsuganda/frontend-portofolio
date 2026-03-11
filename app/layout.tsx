@@ -8,8 +8,6 @@ import Navbar from "@/app/components/layouts/Navbar";
 import Footer from "@/app/components/layouts/Footer";
 import ENVIRONMENT from "./config/environment";
 
-
-
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -139,5 +137,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-

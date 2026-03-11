@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import { cn } from "@/app/lib/utils";
 
 interface ButtonProps {
   children: ReactNode;
@@ -41,7 +42,13 @@ export default function Button({
     lg: "px-8 py-4 text-lg",
   };
 
-  const combinedClassName = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`;
+  const combinedClassName = cn(
+    baseStyles,
+    variants[variant],
+    sizes[size],
+    disabled && "opacity-50 cursor-not-allowed",
+    className
+  );
 
   if (href) {
     const isExternal = href.startsWith("http") || href.startsWith("//");

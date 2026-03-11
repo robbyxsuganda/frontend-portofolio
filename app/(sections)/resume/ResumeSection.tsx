@@ -98,9 +98,8 @@ export default function ResumeSection() {
 
                       <div
                         className={`flex items-center gap-2 text-[var(--foreground-secondary)] mb-2 ${
-
-                          index % 2 === 0 ? "" : "md:justify-end"
-                        }`}
+                        index % 2 === 0 ? "" : "md:justify-end"
+                      }`}
                       >
                         <HiBriefcase className="w-4 h-4" />
                         <span className="font-medium">{exp.company}</span>

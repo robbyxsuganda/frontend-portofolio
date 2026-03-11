@@ -10,7 +10,7 @@ import Skeleton from "@/app/components/ui/Skeleton";
 import ErrorMessage from "@/app/components/ui/ErrorMessage";
 import { useLanguage } from "@/app/context/LanguageContext";
 import { useProfile, useSocialMedia, useStats } from "./hooks";
-
+import { useMemo } from "react";
 
 export default function HomeSection() {
   const { t } = useLanguage();
@@ -18,12 +18,17 @@ export default function HomeSection() {
   const { data: socialMedia, isLoading: socialLoading } = useSocialMedia();
   const { data: stats } = useStats();
 
-  // Use first two stats for the floating elements (years, projects)
-  const yearsStatValue = stats?.find((s) => s.label.toLowerCase().includes("year"))?.value ?? "3+";
-  const projectsStatValue = stats?.find((s) => s.label.toLowerCase().includes("project"))?.value ?? "5+";
-  const projectsStatLabel = stats?.find((s) => s.label.toLowerCase().includes("project"))?.label ?? "Projects";
-
   const isLoading = profileLoading || socialLoading;
+
+  const { yearsStatValue, projectsStatValue, projectsStatLabel } = useMemo(() => {
+    const yearStat = stats?.find((s) => s.label.toLowerCase().includes("year"));
+    const projectStat = stats?.find((s) => s.label.toLowerCase().includes("project"));
+    return {
+      yearsStatValue: yearStat?.value ?? "3+",
+      projectsStatValue: projectStat?.value ?? "5+",
+      projectsStatLabel: projectStat?.label ?? "Projects",
+    };
+  }, [stats]);
 
 
   if (profileError) {

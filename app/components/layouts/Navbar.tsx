@@ -6,35 +6,17 @@ import { HiMenu, HiX, HiSun, HiMoon, HiGlobeAlt } from "react-icons/hi";
 import { useTheme } from "@/app/context/ThemeContext";
 import { useLanguage } from "@/app/context/LanguageContext";
 import { MENU } from "@/app/constants/menu.constants";
+import { useActiveSection } from "@/app/hooks/useActiveSection";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
   const { theme, toggleTheme } = useTheme();
   const { language, setLanguage, t } = useLanguage();
   const langDropdownRef = useRef<HTMLDivElement>(null);
 
-  // Track active section with Intersection Observer (more performant than scroll event)
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-50% 0px -50% 0px" }
-    );
-
-    MENU.forEach((item) => {
-      const section = document.getElementById(item.key);
-      if (section) observer.observe(section);
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  const sectionIds = MENU.map((item) => item.key);
+  const { activeSection, setActiveSection } = useActiveSection(sectionIds, "home");
 
   // Close language dropdown when clicking outside
   useEffect(() => {

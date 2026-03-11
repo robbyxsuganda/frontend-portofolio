@@ -8,8 +8,7 @@ import Button from "@/app/components/ui/Button";
 import Skeleton from "@/app/components/ui/Skeleton";
 import ErrorMessage from "@/app/components/ui/ErrorMessage";
 import { useLanguage } from "@/app/context/LanguageContext";
-import { useProfile } from "@/app/(sections)/home/hooks";
-import { useSocialMedia } from "@/app/(sections)/home/hooks";
+import { useProfile, useSocialMedia } from "@/app/(sections)/home/hooks";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 

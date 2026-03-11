@@ -72,14 +72,14 @@ export default function CertificatesSection() {
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
                       <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-medium">
-                        View Certificate
+                        {t("certificates.viewCertificate")}
                       </span>
                     </div>
                   </div>
 
                   <div className="p-4">
                     <div className="mb-2">
-                      <span className="inline-block px-2 py-1 bg-gray-700 text-gray-200 text-xs font-medium rounded-full capitalize">
+                      <span className="inline-block px-2 py-1 bg-[var(--surface)] text-[var(--foreground-secondary)] text-xs font-medium rounded-full capitalize border border-[var(--border)]">
                         {cert.category[0]}
                       </span>
                     </div>

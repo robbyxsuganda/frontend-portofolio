@@ -1,4 +1,4 @@
-import ENVIRONMENT from "@/app/config/environtment";
+import ENVIRONMENT from "@/app/config/environment";
 
 interface FetchOptions extends Omit<RequestInit, "body"> {
   body?: unknown;

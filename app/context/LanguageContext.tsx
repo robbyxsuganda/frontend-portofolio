@@ -64,6 +64,10 @@ const translations: Record<Language, Record<string, string>> = {
     "certificates.title": "Certificates",
     "certificates.viewCertificate": "View Certificate",
 
+    // Other
+    "other.title": "Other Activities",
+    "other.viewDetails": "View Details",
+
     // Contact
     "contact.title": "Get In Touch",
     "contact.form.title": "Send a Message",
@@ -140,6 +144,10 @@ const translations: Record<Language, Record<string, string>> = {
     // Certificates
     "certificates.title": "Sertifikat",
     "certificates.viewCertificate": "Lihat Sertifikat",
+
+    // Other
+    "other.title": "Aktivitas Lainnya",
+    "other.viewDetails": "Lihat Detail",
 
     // Contact
     "contact.title": "Hubungi Saya",
